@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Nova Tarefa</title>
+    <%- include('partials') %>
+</head>
+<body>
+    <div class="container">
+        <div class="topbar">
+            <h1 style="margin:0">Nova Tarefa</h1>
+            <a href="/tasks">Voltar</a>
+        </div>
+        <form action="/tasks/new" method="POST">
+            <label>Título:
+                <input type="text" name="title" required>
+            </label>
+            <label>Descrição:
+                <input type="text" name="description" required>
+            </label>
+            <button type="submit">Adicionar</button>
+        </form>
+    </div>
+</body>
+</html>

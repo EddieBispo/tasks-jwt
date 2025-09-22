@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Minhas Tarefas</title>
+    <%- include('partials') %>
+</head>
+<body>
+    <div class="container">
+        <div class="topbar">
+            <h1 style="margin:0">Minhas Tarefas</h1>
+            <div>
+                <a href="/tasks/new">Nova Tarefa</a> |
+                <a href="/logout">Sair</a>
+            </div>
+        </div>
+        <ul class="task-list">
+            <% tasks.forEach(function(task) { %>
+                <li>
+                    <span class="task-title <%= task.completed ? 'completed' : '' %>"><%= task.title %></span>
+                    <span class="task-desc"><%= task.description %></span>
+                    <div class="actions">
+                        <% if (!task.completed) { %>
+                            <form action="/tasks/complete/<%= task.id %>" method="POST" style="display:inline">
+                                <button type="submit">Completar</button>
+                            </form>
+                        <% } %>
+                        <a href="/tasks/edit/<%= task.id %>">Editar</a>
+                        <form action="/tasks/delete/<%= task.id %>" method="POST" style="display:inline">
+                            <button type="submit" style="background:#dc2626">Excluir</button>
+                        </form>
+                    </div>
+                </li>
+            <% }) %>
+        </ul>
+        <% if (tasks.length === 0) { %>
+            <p style="color:#64748b; text-align:center; margin-top:32px">Nenhuma tarefa cadastrada.</p>
+        <% } %>
+    </div>
+</body>
+</html>
